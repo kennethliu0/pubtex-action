@@ -22,6 +22,10 @@ inputs:
     description: 'Path to the Markdown file that should be the main page'
     required: false
     default: README.md
+  pre_compile_command:
+    description: 'Command to run before compiling LaTeX sources'
+    required: false
+    default: tlmgr update --self && tlmgr update --all
 outputs:
   handouts:
     description: "Newline-separated list of file paths to handouts"
@@ -36,7 +40,7 @@ runs:
     - name: Compile LaTeX sources
       uses: xu-cheng/latex-action@2.2.1
       with:
-        pre_compile: tlmgr update --self && tlmgr update --all
+        pre_compile: ${{ inputs.pre_compile_command }}
         root_file: |
           ${{ steps.generate-handouts.outputs.handouts }}
           ${{ inputs.files }}
