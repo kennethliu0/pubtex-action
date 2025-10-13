@@ -48,7 +48,7 @@ runs:
       run: mv ./*.pdf ${{ inputs.publish_dir }}
       shell: bash
     - name: Copy index
-      run: cp ${{inputs.index_page }} ${{inputs.publish_dr }}/index.html
+      run: cp ${{inputs.index_page }} ${{inputs.publish_dir }}/index.html
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3.8.0
       with:
