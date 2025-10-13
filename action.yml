@@ -14,6 +14,10 @@ inputs:
     description: 'Space-separated list of Beamer files that handouts should be generated for'
     required: false
     default:
+  index_page:
+    description: 'Path to the html file that should be the main page'
+    required: false
+    default: index.html
   publish_dir:
     description: 'The directory that should be published with GitHub Pages'
     required: false
@@ -43,6 +47,8 @@ runs:
     - name: Move PDFs
       run: mv ./*.pdf ${{ inputs.publish_dir }}
       shell: bash
+    - name: Copy index
+      run: cp ${{inputs.index_page }} ${{inputs.publish_dr }}/index.html
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3.8.0
       with:
