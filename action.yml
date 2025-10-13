@@ -18,10 +18,6 @@ inputs:
     description: 'The directory that should be published with GitHub Pages'
     required: false
     default: dist
-  index_page:
-    description: 'Path to the Markdown file that should be the main page'
-    required: false
-    default: README.md
   pre_compile_command:
     description: 'Command to run before compiling LaTeX sources'
     required: false
@@ -46,9 +42,6 @@ runs:
           ${{ inputs.files }}
     - name: Move PDFs
       run: mv ./*.pdf ${{ inputs.publish_dir }}
-      shell: bash
-    - name: Move index page
-      run: cp ${{ inputs.index_page }} ${{ inputs.publish_dir }}/index.md
       shell: bash
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3.8.0
