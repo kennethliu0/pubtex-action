@@ -49,6 +49,7 @@ runs:
       shell: bash
     - name: Copy index
       run: cp ${{inputs.index_page }} ${{inputs.publish_dir }}/index.html
+      shell: bash
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3.8.0
       with:
