@@ -25,6 +25,10 @@ inputs:
     description: 'Target branch to commit PDFs to'
     required: false
     default: main
+  target_path:
+    description: 'Path within the target repository where PDFs should be copied (e.g., pdfs/lectures)'
+    required: false
+    default: '.'
   commit_message:
     description: 'Commit message for PDF updates'
     required: false
@@ -74,11 +78,14 @@ runs:
         # Checkout or create target branch
         git checkout ${{ inputs.target_branch }} || git checkout -b ${{ inputs.target_branch }}
         
-        # Copy PDFs
-        cp -r ../${{ inputs.publish_dir }}/*.pdf .
+        # Create target directory if it doesn't exist
+        mkdir -p ${{ inputs.target_path }}
+        
+        # Copy PDFs to target path
+        cp -r ../${{ inputs.publish_dir }}/*.pdf ${{ inputs.target_path }}/
         
         # Commit and push
-        git add *.pdf
+        git add ${{ inputs.target_path }}/*.pdf
         git commit -m "${{ inputs.commit_message }}" || echo "No changes to commit"
         git push origin ${{ inputs.target_branch }}
       shell: bash
