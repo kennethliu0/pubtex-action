@@ -22,10 +22,6 @@ inputs:
     description: 'The directory that should be published with GitHub Pages'
     required: false
     default: dist
-  pre_compile_command:
-    description: 'Command to run before compiling LaTeX sources'
-    required: false
-    default: tlmgr update --self && tlmgr update --all
 outputs:
   handouts:
     description: "Newline-separated list of file paths to handouts"
