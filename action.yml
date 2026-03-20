@@ -33,10 +33,6 @@ inputs:
     description: 'Commit message for PDF updates'
     required: false
     default: 'Update compiled PDFs'
-  pre_compile_command:
-    description: 'Command to run before compiling LaTeX sources'
-    required: false
-    default: tlmgr update --self && tlmgr update --all
 outputs:
   handouts:
     description: "Newline-separated list of file paths to handouts"
