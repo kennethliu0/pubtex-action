@@ -49,7 +49,7 @@ runs:
       run: sudo bash ${{ github.action_path }}/generate_handouts.sh "${{ inputs.handouts }}"
       shell: bash
     - name: Compile LaTeX sources
-      uses: xu-cheng/latex-action@2.2.1
+      uses: xu-cheng/latex-action@4.0.0
       with:
         pre_compile: ${{ inputs.pre_compile_command }}
         root_file: |
